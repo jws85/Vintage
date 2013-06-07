@@ -58,6 +58,8 @@ def update_status_line(view):
 
         if g_input_state.register is not None:
             desc.insert(1, 'Register "' + g_input_state.register + '"')
+    elif view.settings().get('replace_mode'):
+        desc = ['REPLACE MODE']
     else:
         desc = ['INSERT MODE']
 
@@ -682,6 +684,18 @@ class ExitInsertMode(sublime_plugin.TextCommand):
             self.view.run_command('vi_move_by_characters_in_line', {'forward': False})
 
         update_status_line(self.view)
+
+class EnterReplaceMode(sublime_plugin.TextCommand):
+    def run(self, edit):
+        self.view.settings().set('replace_mode', True)
+        self.view.run_command('toggle_overwrite')
+        self.view.run_command('enter_insert_mode')
+
+class ExitReplaceMode(sublime_plugin.TextCommand):
+    def run(self, edit):
+        self.view.settings().set('replace_mode', False)
+        self.view.run_command('toggle_overwrite')
+        self.view.run_command('exit_insert_mode')
 
 class EnterVisualMode(sublime_plugin.TextCommand):
     def run(self, edit):
