@@ -7,6 +7,13 @@
 		]
 	},
 
+	{ "keys": ["escape"], "command": "exit_replace_mode",
+		"context":
+		[
+			{ "key": "setting.replace_mode", "operand": true }
+		]
+	},
+
 	{ "keys": ["escape"], "command": "exit_visual_mode",
 		"context":
 		[
@@ -39,6 +46,14 @@
 		]
 	},
 
+	{ "keys": ["ctrl+["], "command": "exit_replace_mode",
+		"context":
+		[
+			{ "key": "setting.replace_mode", "operand": true },
+			{ "key": "setting.vintage_ctrl_keys" }
+		]
+	},
+
 	{ "keys": ["ctrl+["], "command": "exit_visual_mode",
 		"context":
 		[
@@ -65,6 +80,14 @@
 	{ "keys": ["Z", "Z"], "command" : "vi_save_and_exit", "context": [{"key": "setting.command_mode"}] },
 
 	{ "keys": ["i"], "command": "enter_insert_mode",
+	  "context":
+	  [
+			{"key": "setting.command_mode"},
+			{"key": "selection_empty"}
+	  ]
+	},
+
+	{ "keys": ["R"], "command": "enter_replace_mode",
 	  "context":
 	  [
 			{"key": "setting.command_mode"},
