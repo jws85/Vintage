@@ -87,6 +87,14 @@
 	  ]
 	},
 
+	{ "keys": ["insert"], "command": "enter_insert_mode",
+	  "context":
+	  [
+			{"key": "setting.command_mode"},
+			{"key": "selection_empty"}
+	  ]
+	},
+
 	{ "keys": ["R"], "command": "enter_replace_mode",
 	  "context":
 	  [
